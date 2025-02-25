@@ -13,7 +13,7 @@ I am currently enrolled as a non-matriculated student at the Graduate Center and
 
 ### Mpox Post Analysis (Undergraduate Honors Research)  
 
-**Project Files and Writeup:** [Mpox Post Analysis](https://github.com/fleurhes/portfolio/tree/main/mpox_post_analysis)  
+**Project Files and Writeup:** [Mpox Post Analysis](https://github.com/fleurhes/PortfolioGC/tree/main/mpox_post_analysis)  
 
 **Technology:** Python, Excel  
 **Skills Used:** Data Cleaning, Web Scraping, Technical Writing  
@@ -28,8 +28,8 @@ Although misinformation in the Mpox era did not command the same footing as it h
 
 ### Mpox Variant Data Visualization  
 
-**Website:** [Mpox Data Visualization Website](https://fleurhes.github.io/portfolio/mpox_var/)  
-**Project Files and Writeup:** [Mpox Data Visualization Writeup and Repository](https://github.com/fleurhes/portfolio/tree/main/mpox_var)  
+**Website:** [Mpox Data Visualization Website](https://fleurhes.github.io/PortfolioGC/mpox_var/)  
+**Project Files and Writeup:** [Mpox Data Visualization Writeup and Repository](https://github.com/fleurhes/PortfolioGC/tree/main/mpox_var)  
 
 **Technology:** JavaScript, p5.js (library), HTML, CSS  
 **Skills Used:** Data Cleaning, Data Visualization, Website Design  
@@ -40,13 +40,13 @@ Variants of viruses are responsible for causing sickness from the same virus in 
 This visualization can be used to aid health officials in providing an engaging answer as to why it is crucial to get immunized against a virus of the same group but of a different clade.  
 
 #### Results  
-The visualization effectively represents the differences on the genomic level, reinforcing the impact of viruses on global health. The code is modular and allows for similar sequence comparison to be conducted with any other sequence in the FNA format. It can aid the public in better understanding why viruses continue to impact on a global scale each year.  
+The visualization effectively represents the differences on the genomic level, reinforcing the impact of viruses on global health. The code is modular and allows for similar sequence comparisons to be conducted with any other sequence in the FNA format. It can aid the public in better understanding why viruses continue to impact on a global scale each year.  
 
 ---
 
 ### NHL Prediction Model  
 
-**Project Files and Writeup:** [NHL Prediction Model](https://github.com/fleurhes/portfolio/tree/main/nhl_predict)  
+**Project Files and Writeup:** [NHL Prediction Model](https://github.com/fleurhes/PortfolioGC/tree/main/nhl_predict)  
 
 **Technology:** Python, MongoDB, MySQL, Excel  
 **Skills Used:** Machine Learning, Database Management, API Calling, Data Cleaning, Statistics  
@@ -67,7 +67,7 @@ These factors lead me to believe that NHL predictions and outcomes are often luc
 
 ### Biking Data Analysis  
 
-**Project Files and Writeup:** [Biking Health Data Analysis](https://github.com/fleurhes/portfolio/tree/main/health_data) 
+**Project Files and Writeup:** [Biking Health Data Analysis](https://github.com/fleurhes/PortfolioGC/tree/main/health_data) 
 
 **Technology:** Python, MySQL, Excel  
 **Skills Used:** Database Management, Data Cleaning, Statistics  
