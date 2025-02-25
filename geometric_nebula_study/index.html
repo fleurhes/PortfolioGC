@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generative Geometric Nebula</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a1a;
+            overflow: hidden; 
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    <script>
+      class Star {
+        constructor(x, y, size, brightness, speedX, speedY, isBright) {
+          this.x = x;
+          this.y = y;
+          this.size = size;
+          this.brightness = brightness;
+          this.speedX = speedX;
+          this.speedY = speedY;
+          this.isBright = isBright;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0) this.x = width;
+          if (this.x > width) this.x = 0;
+          if (this.y < 0) this.y = height;
+          if (this.y > height) this.y = 0;
+        }
+
+        display(fadeFactor, depthFactor) {
+          let flicker = sin(frameCount * 0.002 + this.x * 0.001) * random(5, 15);
+          fill(255, 255, 255, (this.brightness + flicker) * fadeFactor * depthFactor);
+          ellipse(this.x, this.y, this.size, this.size);
+
+          if (this.isBright) {
+            stroke(255, this.brightness * 0.5 * fadeFactor * depthFactor);
+            line(this.x - this.size * 2, this.y, this.x + this.size * 2, this.y);
+            line(this.x, this.y - this.size * 2, this.x, this.y + this.size * 2);
+            noStroke();
+          }
+        }
+      }
+
+      class Starfield {
+        constructor(numStars) {
+          this.foregroundStars = [];
+          this.backgroundStars = [];
+          this.numStars = numStars;
+          this.generateStars();
+        }
+
+        generateStars() {
+          this.foregroundStars = [];
+          this.backgroundStars = [];
+
+          for (let i = 0; i < this.numStars; i++) {
+            let x = random(width);
+            let y = random(height);
+            let size = random(0.5, 2.5);
+            let brightness = random(180, 255);
+            let speedX = random(-0.3, 0.3);
+            let speedY = random(-0.3, 0.3);
+            let isBright = random() < 0.05;
+
+            let star = new Star(x, y, size, brightness, speedX, speedY, isBright);
+
+            if (random() < 0.6) {
+              this.foregroundStars.push(star);
+            } else {
+              this.backgroundStars.push(star);
+            }
+          }
+        }
+
+        update() {
+          this.foregroundStars.forEach(star => star.update());
+          this.backgroundStars.forEach(star => star.update());
+        }
+
+        display(fadeFactor) {
+          this.backgroundStars.forEach(star => star.display(fadeFactor, 0.5));
+          this.foregroundStars.forEach(star => star.display(fadeFactor, 1));
+        }
+      }
+
+      class Nebula {
+        constructor() {
+          this.graphics = createGraphics(width, height);
+          this.graphics.noStroke();
+          this.timeOffsetX = 0;
+          this.timeOffsetY = 0;
+          this.colorShift = 0;
+          this.generateNebula();
+        }
+
+        generateNebula() {
+          noiseSeed(random(10000));
+          this.graphics.clear();
+          this.graphics.background(0, 0, 5, 255);
+
+          let nebulaLayers = [
+            { color1: color(5, 5, 15, 1), color2: color(10, 20, 40, 3), noiseScale: 0.006 },
+            { color1: color(8, 10, 25, 2), color2: color(20, 40, 70, 4), noiseScale: 0.004 },
+            { color1: color(12, 18, 30, 2), color2: color(30, 50, 90, 5), noiseScale: 0.0025 },
+            { color1: color(20, 10, 30, 1), color2: color(100, 50, 160, 4), noiseScale: 0.002 },
+            { color1: color(10, 30, 50, 1), color2: color(50, 120, 180, 5), noiseScale: 0.0018 }
+          ];
+
+          for (let layer of nebulaLayers) {
+            for (let i = 0; i < 500; i++) {
+              let x = random(width);
+              let y = random(height);
+              let noiseVal = noise(x * layer.noiseScale, y * layer.noiseScale);
+              let size = map(noiseVal, 0.2, 1, 300, 900);
+              let nebulaColor = lerpColor(layer.color1, layer.color2, noiseVal);
+              this.graphics.fill(nebulaColor);
+              this.graphics.ellipse(x, y, size, size);
+            }
+          }
+        }
+
+        display(fadeFactor) {
+          let dynamicR = map(sin(frameCount * 0.001), -1, 1, 150, 255);
+          let dynamicG = map(cos(frameCount * 0.001), -1, 1, 150, 255);
+          let dynamicB = map(sin(frameCount * 0.001 + PI / 2), -1, 1, 150, 255);
+
+          push();
+          tint(dynamicR, dynamicG, dynamicB, 150 * fadeFactor);
+          translate(this.timeOffsetX, this.timeOffsetY);
+          image(this.graphics, -width / 2, -height / 2, width * 2, height * 2);
+          pop();
+
+          this.timeOffsetX += 0.01;
+          this.timeOffsetY += 0.01;
+          this.colorShift = sin(frameCount * 0.001) * 20;
+        }
+      }
+
+      let nebula;
+      let starfield;
+      let regenTimer = 0;
+      let cycleDuration = 150;
+      let fadeInDuration = 60;
+      let fadeOutDuration = 60;
+
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+        frameRate(60);
+        noStroke();
+
+        starfield = new Starfield(600);
+        nebula = new Nebula();
+      }
+
+      function getFadeFactor() {
+        if (regenTimer < fadeInDuration) {
+          return map(regenTimer, 0, fadeInDuration, 0, 1);
+        } else if (regenTimer < cycleDuration - fadeOutDuration) {
+          return 1;
+        } else {
+          return map(regenTimer, cycleDuration - fadeOutDuration, cycleDuration, 1, 0);
+        }
+      }
+
+      function draw() {
+        background(0, 0, 10);
+
+        let fadeFactor = getFadeFactor();
+        nebula.display(fadeFactor);
+        starfield.update();
+        starfield.display(fadeFactor);
+
+        regenTimer++;
+        if (regenTimer >= cycleDuration) {
+          nebula.generateNebula();
+          regenTimer = 0;
+        }
+      }
+
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+        nebula.graphics.resizeCanvas(width, height);
+        nebula.generateNebula();
+      }
+    </script>
+  </body>
+</html>

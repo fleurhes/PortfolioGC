@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mpox Clade Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a1a;
+            overflow: hidden;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 5dvh;
+            position: relative;
+        }
+        .clade-indicator {
+            position: fixed;
+            top: 2dvh;
+            right: 2dvw;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: opacity 0.5s;
+        }
+        .legend {
+            position: fixed;
+            top: 2dvh;
+            left: 2dvw;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+        .scrollbar {
+            position: fixed;
+            right: 2dvw;
+            top: 10dvh;
+            width: 12px;
+            height: 80dvh;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .scroll-thumb {
+            width: 100%;
+            height: 20px;
+            background: white;
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+        }
+        .loading-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        .switch-button {
+            position: fixed;
+            bottom: 5dvh;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="screen_cont"></div>
+<div class="clade-indicator" id="clade-indicator">Clade 1</div>
+<div class="legend">
+    <div style="color: #FF6B6B;">■ A - Adenine</div>
+    <div style="color: #4ECDC4;">■ T - Thymine</div>
+    <div style="color: #45B7D1;">■ C - Cytosine</div>
+    <div style="color: #96CEB4;">■ G - Guanine</div>
+</div>
+<div class="scrollbar" id="scrollbar">
+    <div class="scroll-thumb" id="scroll-thumb"></div>
+</div>
+<div class="loading-message" id="loading-message">Loading Genome Data...</div>
+<button class="switch-button" onclick="switchClade()">Switch Clade</button>
+
+<script>
+    let genomeSequence = "";
+    let clade_1_seq = "";
+    let clade_2_seq = "";
+    let clade_1_on = true;
+    let scrollYOffset = 0;
+    let isLoading = false;
+    let charsPerRow, blockSize, visibleRows, totalRows;
+    let minZoomFactor = Math.pow(0.9, 13); 
+    let zoomFactor = minZoomFactor; 
+    let glCanvas;
+    let cladeIndicator = document.getElementById("clade-indicator");
+    let scrollbar = document.getElementById("scrollbar");
+    let scrollThumb = document.getElementById("scroll-thumb");
+
+    const colors = {
+        'A': [255, 107, 107], 
+        'T': [78, 205, 196],   
+        'C': [69, 183, 209],   
+        'G': [150, 206, 180]  
+    };
+
+    const spacing = 2;
+    const bottomPaddingSVH = 10;
+
+    function setup() {
+        glCanvas = createCanvas(windowWidth, windowHeight, WEBGL);
+        glCanvas.parent('screen_cont');
+        pixelDensity(1);
+
+       
+        let slider = createSlider(minZoomFactor, 1.5, zoomFactor, 0.01); 
+        slider.position(20, height - 40);
+        slider.style('width', '200px');
+        slider.input(() => {
+            zoomFactor = slider.value();
+            calculateDimensions();
+            redraw();
+        });
+
+        loadGenome('clade_1.fna', (sequence) => {
+            clade_1_seq = sequence;
+            genomeSequence = sequence;
+            calculateDimensions();
+            redraw();
+            loadGenome('clade_2.fna', (sequence) => {
+                clade_2_seq = sequence;
+            });
+        });
+
+        updateScrollThumb();
+    }
+
+    function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+        calculateDimensions();
+        redraw();
+    }
+
+    function switchClade() {
+        let previousScroll = scrollYOffset;
+        clade_1_on = !clade_1_on;
+        genomeSequence = clade_1_on ? clade_1_seq : clade_2_seq;
+        cladeIndicator.textContent = clade_1_on ? "Clade 1" : "Clade 2";
+        calculateDimensions();
+        scrollYOffset = previousScroll;
+        updateScrollThumb();
+        redraw();
+    }
+
+    function calculateDimensions() {
+        const paddingLeft = width * 0.10;
+        charsPerRow = Math.floor((width - paddingLeft * 2) / ((20 * zoomFactor) + spacing));
+        blockSize = Math.min(20 * zoomFactor, (width - paddingLeft * 2) / charsPerRow - spacing);
+        visibleRows = Math.ceil(height / (blockSize + spacing));
+
+        let genomeRows = Math.ceil(genomeSequence.length / charsPerRow);
+        let bottomPaddingPixels = (bottomPaddingSVH / 100) * window.innerHeight; 
+        let bottomPaddingRows = Math.ceil(bottomPaddingPixels / (blockSize + spacing));
+
+        totalRows = genomeRows + bottomPaddingRows; 
+
+        updateScrollThumb();
+    }
+
+    let isDragging = false;
+    scrollbar.addEventListener("mousedown", function () { isDragging = true; });
+    document.addEventListener("mouseup", function () { isDragging = false; });
+    document.addEventListener("mousemove", function (e) {
+        if (isDragging) {
+            let scrollPercent = (e.clientY - scrollbar.offsetTop) / scrollbar.clientHeight;
+            scrollYOffset = scrollPercent * ((totalRows - visibleRows) * (blockSize + spacing));
+            scrollYOffset = constrain(scrollYOffset, 0, (totalRows - visibleRows) * (blockSize + spacing));
+            updateScrollThumb();
+            redraw();
+        }
+    });
+
+    function updateScrollThumb() {
+        if (totalRows > visibleRows) {
+            let scrollPercent = scrollYOffset / ((totalRows - visibleRows) * (blockSize + spacing));
+            scrollThumb.style.top = `${scrollPercent * (scrollbar.clientHeight - scrollThumb.clientHeight)}px`;
+        }
+    }
+
+    function draw() {
+        if (isLoading || genomeSequence.length === 0) return;
+        background(10, 10, 26);
+        translate(-width / 2, -height / 2);
+
+        const paddingLeft = width * 0.10;
+        const startRow = Math.floor(scrollYOffset / (blockSize + spacing));
+
+        for (let row = startRow; row < startRow + visibleRows; row++) {
+            for (let col = 0; col < charsPerRow; col++) {
+                let i = row * charsPerRow + col;
+                if (i >= genomeSequence.length) return;
+
+                let nucleotide = genomeSequence[i];
+                let colorValue = colors[nucleotide] || [255, 255, 255];
+
+                let xPos = paddingLeft + col * (blockSize + spacing);
+                let yPos = (row - startRow) * (blockSize + spacing);
+
+                fill(colorValue[0], colorValue[1], colorValue[2]);
+                noStroke();
+                rect(xPos, yPos, blockSize, blockSize);
+            }
+        }
+    }
+
+    function loadGenome(filename, callback) {
+    isLoading = true;
+    fetch(`sequences/${filename}?nocache=${Date.now()}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            let lines = data.split("\n").filter(line => !line.startsWith(">"));
+            let sequence = lines.join("").replace(/[^ATCG]/g, "");
+            callback(sequence);
+        })
+        .catch(error => console.error("Error loading genome:", error))
+        .finally(() => {
+            isLoading = false;
+            calculateDimensions();
+            updateScrollThumb();
+            redraw();
+        });
+    }
+
+
+    function mouseWheel(event) {
+        event.preventDefault();
+        scrollYOffset += event.delta * 2;
+        scrollYOffset = constrain(scrollYOffset, 0, (totalRows - visibleRows) * (blockSize + spacing));
+        updateScrollThumb();
+        redraw();
+    }
+
+    function keyPressed() {
+        if (keyCode === UP_ARROW) scrollYOffset -= blockSize * 5;
+        if (keyCode === DOWN_ARROW) scrollYOffset += blockSize * 5;
+        if (keyCode === 33) scrollYOffset -= height;
+        if (keyCode === 34) scrollYOffset += height;
+        scrollYOffset = constrain(scrollYOffset, 0, (totalRows - visibleRows) * (blockSize + spacing));
+        updateScrollThumb();
+        redraw();
+    }
+</script>
+
+
+
+</body>
+</html>
