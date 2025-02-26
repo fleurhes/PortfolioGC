@@ -3,7 +3,7 @@
 
 Hello, My name is Brandon Max Flores, and I am a recent CUNY College of Staten Island graduate with a Bachelor of Science in Communications Design and Digital Media.  
 
-I am a research assistant working on Machine Learning, Topic Modeling, and data-driven art with Michael Mandiberg and a Project Support Specialist for Johnson & Johnson, working with analytics to ensure proper targeting, segmentation, and tracking across teams.  
+I am currently a Communications Specialist for Johnson & Johnson, working in the Global Communications sector leveraging data analysis and statsitics to promote and verify proper distribution targeting and metric tracking across teams. I also am working with Michael Mandiberg of the Graduate Center as a Research Assistant supporting their work with machine learning, topic modeling, and data-driven art.
 
 I am currently enrolled as a non-matriculated student at the Graduate Center and seeking admission for the Fall 2025 Semester. 
 
@@ -25,6 +25,23 @@ Analysis of posts on the X platform during the rise of the Mpox spread in late 2
 Although misinformation in the Mpox era did not command the same footing as it had in more polarizing cases such as COVID, it is evolving at a rapid rate and spreading early on, revealing an earnest need for public health officials to monitor new instances of misinformation and combat even those that do not fall under conventional categories.  
 
 ---
+
+### Biking Data Analysis  
+
+**Project Files and Writeup:** [Biking Health Data Analysis](https://github.com/fleurhes/PortfolioGC/tree/main/health_data) 
+
+**Technology:** Python, MySQL, Excel  
+**Skills Used:** Database Management, Data Cleaning, Statistics  
+
+#### Description  
+In 2022, I increased my efforts at staying active and logged 19 bike rides on my Apple Watch between May and June. I wanted to analyze these rides to identify any patterns in what impacted my performance and determine if I had improved over my rides.  
+
+To analyze and identify patterns from my data, I leveraged MySQL with Python scripts to build and run queries on a database of my data.  
+
+#### Results  
+After querying my data to find performance trends based on duration, speed, distance, and time of day, I was disappointed to find that none of these factors appeared to impact my performance significantly.  
+
+The data leads me to suspect that my performance was not impacted by anything other than external factors such as my psychological state or the weather.  
 
 ### Mpox Variant Data Visualization  
 
@@ -65,24 +82,21 @@ These factors lead me to believe that NHL predictions and outcomes are often luc
 
 ---
 
-### Biking Data Analysis  
+### Generative Nebula Study  
 
-**Project Files and Writeup:** [Biking Health Data Analysis](https://github.com/fleurhes/PortfolioGC/tree/main/health_data) 
+**Website:** [Generative Nebula Study Website](https://fleurhes.github.io/PortfolioGC/generative_nebula_study/)  
+**Project Files and Writeup:** [Generative Nebula Study Writeup and Repository](https://github.com/fleurhes/PortfolioGC/tree/main/generative_nebula_study)  
 
-**Technology:** Python, MySQL, Excel  
-**Skills Used:** Database Management, Data Cleaning, Statistics  
+**Technology:** JavaScript, p5.js (library), HTML, CSS  
+**Skills Used:** Generative Art, Website Design, Experimental Code, Mathematics  
 
 #### Description  
-In 2022, I increased my efforts at staying active and logged 19 bike rides on my Apple Watch between May and June. I wanted to analyze these rides to identify any patterns in what impacted my performance and determine if I had improved over my rides.  
-
-To analyze and identify patterns from my data, I leveraged MySQL with Python scripts to build and run queries on a database of my data.  
+The cosmos have been a long standing fascination of mine resulting in my passion for astrophotography. Although I enjoy astrophotography, it is challenging especially following my most recent knee surgery to set up my equipment and get the pefect shot. In order for me to experience the cosmos inside, I began to look into ways to leverage generative art through the use of p5.js and further explore through the magic of math.
 
 #### Results  
-After querying my data to find performance trends based on duration, speed, distance, and time of day, I was disappointed to find that none of these factors appeared to impact my performance significantly.  
+Through the use of trigonometry, geometric vectors, and statistical probability, I simulate a nebula featuring layers of color for realistic shading, a dynamic starfield utilizing probability to determine distribution and flickering, as well as fractal noise created with geometric vectors to smooth the generated imagees. This project is meant to be viewed through a lens of creative possibility through code, and a potential way to bridge the gap between arithmetic and visual based learning.
 
-The data leads me to suspect that my performance was not impacted by anything other than external factors such as my psychological state or the weather.  
-
-
+---
 
 ## Contacts
 
