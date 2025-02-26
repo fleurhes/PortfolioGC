@@ -1,5 +1,14 @@
 # Mpox Post Misinformation Analysis
 
+## Technology
+- Python 
+- Excel  
+
+## Skills Used
+- Data Cleaning 
+- Web Scraping
+- Technical Writing  
+
 ## Context 
 This study examines the discourse surrounding Mpox across the X platform using Python to scrape posts over three months to build a database of time-stamped posts along with their contents and unique user handles. Findings are analyzed by comparing past instances of information and misinformation during global health crises to categorize and analyze similarities and evolutions in a post-COVID context. Our findings identify troubling misinformation trends as well as how Mpox differs from those prior providing valuable data in the public global health information sector. This data has the potential to improve comprehension of misinformation spread as well as aid in revamping the distribution of accurate information during future health crises to curb misinformation.  
 

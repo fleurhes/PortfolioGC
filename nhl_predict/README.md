@@ -1,5 +1,18 @@
 # NHL Prediction Model
 
+## Technology
+- Python
+- MongoDB
+- MySQL
+- Excel  
+
+## Skills Used 
+- Machine Learning
+- Database Management
+- API Calling
+- Data Cleaning
+- Statistics  
+
 ## Context  
 As many avid hockey fans are familiar with, there are 32 teams in the NHL with 82 regular season games for each team to play. While watching each NHL season, I noticed that it is not uncommon for the last-place team to beat out the first-place team, and predictions were often incorrect. The inconsistency of predictions I witnessed made me wonder why game predictions seemed so unreliable.  
 

@@ -1,4 +1,14 @@
-# **Health Data Analysis**  
+# **Health Data Analysis** 
+
+## Technology
+- Python
+- MySQL 
+- Excel  
+
+## Skills Used
+- Database Management  
+- Data Cleaning
+- Statistics 
 
 ## **Context**  
 In 2022, I increased my efforts at staying active and logged 19 bike rides on my Apple watch between May and June. I wanted to analyze these rides to identify any patterns in what impacted my performance and if I had improved over my rides.  
