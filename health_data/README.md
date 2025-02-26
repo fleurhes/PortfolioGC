@@ -28,7 +28,7 @@ HOUR(date_time), AVG(avg_speed);
 
 This proved inconclusive as most values were extremely close, such as my best speed at 3 PM being nearly identical to 10 AM.
 
-![TOD vs Speed](health_data/graphs/hour_vs_speed.png)
+![TOD vs Speed](Graphs/hour_vs_speed.png)
 
 ## Distance vs Ride Intensity
 Looking at other potential links, Ride Intensity (calculated earlier to standardize effort to not introduce categorical bias with higher totals such as elevation gain) was selected with distance to reveal a link between more intense rides and longer distances.
@@ -84,7 +84,7 @@ AVG(avg_speed) GROUP BY duration;
 
 This new hypothesis proved faulty as well. Although several of my shorter rides were ranked at the top, the data was inconclusive as the middle section showed no link.
 
-![Duration vs. Speed](health_data/graphs/duration_vs_speed.png)
+![Duration vs. Speed](Graphs/duration_vs_speed.png)
 ### Recovery Time vs. Speed
 
 Lastly, I looked at my ride dates and determined that there must be a link between time between rides. Unfortunately, after running the query:
@@ -115,4 +115,4 @@ AVG(avg_speed) GROUP BY hours_since_last_ride;
 
 This showed no correlation between the two leading me to believe that my performance was not impacted by anything other than external factors such as my psychological state or the weather.
 
-![Recovery vs. Speed](health_data/graphs/recovery_vs_speed.png)
+![Recovery vs. Speed](Graphs/recovery_vs_speed.png)
