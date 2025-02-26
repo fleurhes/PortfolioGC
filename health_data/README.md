@@ -51,7 +51,6 @@ DESC LIMIT 10
 | 6/3/2022 15:12     | 16.75    | 118.433       |
 | 5/30/2022 14:55    | 16.06    | 116.367       |
 
-
 This gave my most concrete performance link, however, this was not indicative of a performance gain over time as data showed that my first ride was my most intense.
 
 
