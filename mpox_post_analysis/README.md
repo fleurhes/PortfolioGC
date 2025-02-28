@@ -26,7 +26,7 @@ We observed an alarming amount of misinformation posts throughout our study with
 
 
 ### Misinformation Evolution  
-Looking at the data more closely, we identified a similarity to the Ebola crisis, where the spread of misinformation occurred overwhelmingly at the onslaught with 114 instances occurring in August.
+Looking at the data more closely, we identified a similarity to the Ebola crisis, where the spread of misinformation occurred overwhelmingly at the onset with 114 instances occurring in August.
 
 ![August Misinformation](graphs/safe_vs_misinfo_aug.png)
 
