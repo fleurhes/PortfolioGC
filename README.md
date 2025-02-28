@@ -1,9 +1,9 @@
 # **Brandon Max Flores Portfolio**  
 ## About Me  
 
-Hello, My name is Brandon Max Flores, and I am a recent CUNY College of Staten Island graduate with a Bachelor of Science in Communications Design and Digital Media.  
+Hello, my name is Brandon Max Flores, and I am a recent CUNY College of Staten Island graduate with a Bachelor of Science in Communications Design and Digital Media.  
 
-I am currently a Communications Specialist for Johnson & Johnson, working in the Global Communications sector leveraging data analysis and statsitics to promote and verify proper distribution targeting and metric tracking across teams. I also am working with Michael Mandiberg of the Graduate Center as a Research Assistant supporting their work with machine learning, topic modeling, and data-driven art.
+I am currently a Communications Specialist for MedTech by Johnson & Johnson, working in the Global Health Communications sector leveraging data analysis and statistics to promote and verify proper distribution targeting and metric tracking across teams. I also am working with Michael Mandiberg of the Graduate Center as a Research Assistant supporting their work with machine learning, topic modeling, and data-driven art.
 
 I am currently enrolled as a non-matriculated student at the Graduate Center and seeking admission for the Fall 2025 Semester. 
 
@@ -19,7 +19,7 @@ I am currently enrolled as a non-matriculated student at the Graduate Center and
 **Skills Used:** Data Cleaning, Web Scraping, Technical Writing  
 
 #### Description  
-Analysis of posts on the X platform during the rise of the Mpox spread in late 2024. The study follows cases from August to November and categorizes and classifies posts to highlight trends and evolution of misinformation over time to aid officials in the public health sector curb misinformation during future health crises.  
+Analysis of posts on the X platform during the rise of the Mpox spread in late 2024. The study follows cases from August to November and categorizes and classifies posts to highlight trends and evolution of misinformation over time to aid officials in the public health sector, curb misinformation during future health crises.  
 
 #### Results  
 Although misinformation in the Mpox era did not command the same footing as it had in more polarizing cases such as COVID, it is evolving at a rapid rate and spreading early on, revealing an earnest need for public health officials to monitor new instances of misinformation and combat even those that do not fall under conventional categories.  
@@ -52,7 +52,7 @@ The data leads me to suspect that my performance was not impacted by anything ot
 **Skills Used:** Data Cleaning, Data Visualization, Website Design  
 
 #### Description  
-Variants of viruses are responsible for causing sickness from the same virus in name year after year. This interactive web-based visualization uses two public complete Mpox genome sequences to map the differences embedded in tens of thousands of lines of genome sequence.  
+Variants of viruses are responsible for causing sickness from the same virus in the same name year after year. This interactive web-based visualization uses two public complete Mpox genome sequences to map the differences embedded in tens of thousands of lines of genome sequence.  
 
 This visualization can be used to aid health officials in providing an engaging answer as to why it is crucial to get immunized against a virus of the same group but of a different clade.  
 
@@ -91,10 +91,10 @@ These factors lead me to believe that NHL predictions and outcomes are often luc
 **Skills Used:** Generative Art, Website Design, Experimental Code, Mathematics  
 
 #### Description  
-The cosmos have been a long standing fascination of mine resulting in my passion for astrophotography. Although I enjoy astrophotography, it is challenging especially following my most recent knee surgery to set up my equipment and get the pefect shot. In order for me to experience the cosmos inside, I began to look into ways to leverage generative art through the use of p5.js and further explore through the magic of math.
+The cosmos have been a long-standing fascination of mine, resulting in my passion for astrophotography. Although I enjoy astrophotography, it is challenging, especially following my most recent knee surgery, to set up my equipment and get the perfect shot. For me to experience the cosmos inside, I began to look into ways to leverage generative art through the use of p5.js and further explore through the magic of math.
 
 #### Results  
-Through the use of trigonometry, geometric vectors, and statistical probability, I simulate a nebula featuring layers of color for realistic shading, a dynamic starfield utilizing probability to determine distribution and flickering, as well as fractal noise created with geometric vectors to smooth the generated imagees. This project is meant to be viewed through a lens of creative possibility through code, and a potential way to bridge the gap between arithmetic and visual based learning.
+Through the use of trigonometry, geometric vectors, and statistical probability, I simulate a nebula featuring layers of color for realistic shading, a dynamic starfield utilizing probability to determine distribution and flickering, as well as fractal noise created with geometric vectors to smooth the generated images. This project is meant to be viewed through a lens of creative possibility through code, and a potential way to bridge the gap between arithmetic and visual-based learning.
 
 ---
 
