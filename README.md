@@ -3,7 +3,7 @@
 
 Hello, my name is Brandon Max Flores, and I am a recent CUNY College of Staten Island graduate with a Bachelor of Science in Communications Design and Digital Media.  
 
-I am currently a Communications Specialist for MedTech by Johnson & Johnson, working in the Global Health Communications sector leveraging data analysis and statistics to promote and verify proper distribution targeting and metric tracking across teams. I also am working with Michael Mandiberg of the Graduate Center as a Research Assistant supporting their work with machine learning, topic modeling, and data-driven art.
+I am currently a Communications Specialist for MedTech by Johnson & Johnson, leveraging data analysis and statistics to promote and verify proper distribution targeting and metric tracking across teams. I also am working with Michael Mandiberg of the Graduate Center as a Research Assistant supporting their work with machine learning, topic modeling, and data-driven art.
 
 I am currently enrolled as a non-matriculated student at the Graduate Center and seeking admission for the Fall 2025 Semester. 
 
