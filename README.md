@@ -41,7 +41,9 @@ To analyze and identify patterns from my data, I leveraged MySQL with Python scr
 #### Results  
 After querying my data to find performance trends based on duration, speed, distance, and time of day, I was disappointed to find that none of these factors appeared to impact my performance significantly.  
 
-The data leads me to suspect that my performance was not impacted by anything other than external factors such as my psychological state or the weather.  
+The data leads me to suspect that my performance was not impacted by anything other than external factors such as my psychological state or the weather.
+
+---
 
 ### Mpox Variant Data Visualization  
 
